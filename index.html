@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Save Library ♡</title>
+
+<style>
+*{box-sizing:border-box}
+
+:root{
+  --ink:#34313b;
+  --cream:#fffaf1;
+  --pink:#ffd9e7;
+  --yellow:#fff0a8;
+  --blue:#d9f1ff;
+  --green:#dcf5d5;
+  --lavender:#e8ddff;
+  --peach:#ffe1cf;
+  --white:#fff;
+}
+
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Avenir Next",sans-serif;
+}
+
+.app{
+  max-width:520px;
+  margin:auto;
+  min-height:100vh;
+  padding:22px 18px 95px;
+}
+
+/* HEADER */
+
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.logo{
+  font-size:25px;
+  font-weight:900;
+  letter-spacing:-1.3px;
+}
+
+.logo span{
+  font-size:20px;
+}
+
+.searchBtn{
+  border:0;
+  background:white;
+  width:43px;
+  height:43px;
+  border-radius:15px;
+  font-size:19px;
+  box-shadow:0 3px 12px rgba(60,50,70,.07);
+}
+
+/* WELCOME */
+
+.welcome{
+  background:linear-gradient(135deg,#ffd9e7,#d9f1ff,#fff0a8);
+  border-radius:28px;
+  padding:23px;
+  margin-bottom:22px;
+  position:relative;
+  overflow:hidden;
+}
+
+.welcome:after{
+  content:"♡";
+  position:absolute;
+  right:17px;
+  top:7px;
+  font-size:65px;
+  opacity:.35;
+}
+
+.welcome h1{
+  margin:0;
+  font-size:30px;
+  letter-spacing:-1.5px;
+}
+
+.welcome p{
+  margin:8px 0 0;
+  font-size:14px;
+  line-height:1.5;
+  max-width:285px;
+}
+
+/* STATS */
+
+.stats{
+  display:flex;
+  gap:10px;
+  margin-bottom:22px;
+}
+
+.stat{
+  flex:1;
+  background:white;
+  border-radius:18px;
+  padding:14px;
+  text-align:center;
+  box-shadow:0 3px 12px rgba(60,50,70,.05);
+}
+
+.stat b{
+  display:block;
+  font-size:21px;
+}
+
+.stat small{
+  font-size:11px;
+  color:#777;
+}
+
+/* SECTION */
+
+.sectionTitle{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:24px 2px 12px;
+}
+
+.sectionTitle h2{
+  margin:0;
+  font-size:19px;
+}
+
+.sectionTitle button{
+  border:0;
+  background:none;
+  font-weight:700;
+  color:#777;
+}
+
+/* COLLECTIONS */
+
+.collections{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.collection{
+  min-height:125px;
+  border:0;
+  border-radius:23px;
+  padding:17px;
+  text-align:left;
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+}
+
+.collection:nth-child(1){background:var(--pink)}
+.collection:nth-child(2){background:var(--yellow)}
+.collection:nth-child(3){background:var(--blue)}
+.collection:nth-child(4){background:var(--green)}
+.collection:nth-child(5){background:var(--lavender)}
+.collection:nth-child(6){background:var(--peach)}
+
+.collection .icon{
+  font-size:28px;
+}
+
+.collection b{
+  display:block;
+  margin-top:9px;
+  font-size:15px;
+}
+
+.collection small{
+  color:#6d6872;
+  font-size:11px;
+}
+
+.collection:after{
+  content:"♡";
+  position:absolute;
+  right:10px;
+  bottom:-5px;
+  font-size:42px;
+  opacity:.25;
+}
+
+/* SAVE CARDS */
+
+.saveCard{
+  background:white;
+  border-radius:22px;
+  padding:17px;
+  margin-bottom:12px;
+  box-shadow:0 4px 15px rgba(60,50,70,.06);
+  position:relative;
+}
+
+.saveTop{
+  display:flex;
+  gap:12px;
+}
+
+.saveEmoji{
+  width:45px;
+  height:45px;
+  border-radius:15px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:23px;
+  flex-shrink:0;
+}
+
+.saveInfo{
+  flex:1;
+}
+
+.saveInfo h3{
+  margin:2px 0 4px;
+  font-size:16px;
+}
+
+.saveInfo p{
+  margin:0;
+  font-size:12px;
+  color:#777;
+  line-height:1.4;
+}
+
+.saveTags{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+  margin-top:13px;
+}
+
+.tag{
+  background:#f5f2f7;
+  padding:6px 9px;
+  border-radius:10px;
+  font-size:10px;
+}
+
+.cardActions{
+  display:flex;
+  gap:8px;
+  margin-top:13px;
+}
+
+.cardActions button{
+  border:0;
+  padding:8px 11px;
+  border-radius:11px;
+  font-size:11px;
+  font-weight:700;
+}
+
+.tryBtn{background:var(--yellow)}
+.favoriteBtn{background:var(--pink)}
+.deleteBtn{background:#f1eeee}
+
+.link{
+  display:inline-block;
+  margin-top:10px;
+  color:#6f75b5;
+  font-size:12px;
+  text-decoration:none;
+  font-weight:700;
+}
+
+/* ADD BUTTON */
+
+.addBig{
+  width:100%;
+  border:2px dashed #d8cbd4;
+  background:rgba(255,255,255,.55);
+  padding:17px;
+  border-radius:20px;
+  font-size:15px;
+  font-weight:800;
+  color:#625b67;
+  margin-top:5px;
+}
+
+/* BOTTOM NAV */
+
+.nav{
+  position:fixed;
+  bottom:12px;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(480px,calc(100% - 28px));
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(15px);
+  border-radius:25px;
+  padding:9px;
+  display:flex;
+  justify-content:space-around;
+  box-shadow:0 5px 25px rgba(60,50,70,.12);
+}
+
+.nav button{
+  border:0;
+  background:none;
+  padding:8px 13px;
+  border-radius:15px;
+  font-size:11px;
+  color:#777;
+}
+
+.nav button.active{
+  background:#fff0a8;
+  color:#34313b;
+  font-weight:800;
+}
+
+/* PAGES */
+
+.page{display:none}
+.page.active{display:block}
+
+/* MODAL */
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(45,40,50,.28);
+  z-index:20;
+  padding:18px;
+  align-items:flex-end;
+  justify-content:center;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modalBox{
+  width:min(500px,100%);
+  background:white;
+  border-radius:28px 28px 20px 20px;
+  padding:23px;
+  max-height:90vh;
+  overflow:auto;
+}
+
+.modalBox h2{
+  margin-top:0;
+}
+
+label{
+  display:block;
+  font-size:12px;
+  font-weight:800;
+  margin:14px 0 6px;
+}
+
+input,textarea,select{
+  width:100%;
+  border:1.5px solid #e3dce2;
+  border-radius:14px;
+  padding:12px;
+  font-family:inherit;
+  font-size:14px;
+  background:#fffafc;
+}
+
+textarea{
+  min-height:90px;
+  resize:vertical;
+}
+
+.modalButtons{
+  display:flex;
+  gap:9px;
+  margin-top:18px;
+}
+
+.modalButtons button{
+  flex:1;
+  border:0;
+  padding:14px;
+  border-radius:15px;
+  font-weight:800;
+}
+
+.cancel{background:#f1eeee}
+.saveNew{background:#d9f1ff}
+
+/* SEARCH */
+
+.searchBox{
+  margin-bottom:18px;
+}
+
+.searchBox input{
+  background:white;
+  border:0;
+  box-shadow:0 3px 12px rgba(60,50,70,.06);
+}
+
+/* EMPTY */
+
+.empty{
+  background:white;
+  border-radius:22px;
+  padding:28px 20px;
+  text-align:center;
+  color:#777;
+  line-height:1.5;
+}
+
+.empty .big{
+  font-size:40px;
+  display:block;
+  margin-bottom:8px;
+}
+
+/* CATEGORY PAGE */
+
+.back{
+  border:0;
+  background:none;
+  font-weight:800;
+  padding:0;
+  margin-bottom:18px;
+}
+
+.categoryHeader{
+  padding:23px;
+  border-radius:25px;
+  margin-bottom:20px;
+}
+
+.categoryHeader h1{
+  margin:0;
+  font-size:28px;
+}
+
+.categoryHeader p{
+  margin:7px 0 0;
+  font-size:13px;
+  color:#68616c;
+}
+
+@media(max-width:370px){
+  .collections{gap:8px}
+  .collection{padding:13px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- HOME -->
+
+<div id="homePage" class="page active">
+
+<div class="header">
+  <div class="logo">my saves <span>♡</span></div>
+  <button class="searchBtn" onclick="showPage('searchPage')">⌕</button>
+</div>
+
+<div class="welcome">
+  <h1>your little<br>idea world ♡</h1>
+  <p>All the things you save because future-you might want them.</p>
+</div>
+
+<div class="stats">
+  <div class="stat">
+    <b id="totalCount">0</b>
+    <small>saved</small>
+  </div>
+  <div class="stat">
+    <b id="tryCount">0</b>
+    <small>try soon</small>
+  </div>
+  <div class="stat">
+    <b id="favCount">0</b>
+    <small>favorites</small>
+  </div>
+</div>
+
+<div class="sectionTitle">
+  <h2>little collections</h2>
+</div>
+
+<div class="collections">
+
+<button class="collection" onclick="openCategory('Glow Up','🧴','#ffd9e7')">
+  <span class="icon">🧴</span>
+  <b>Glow Up</b>
+  <small id="count-Glow Up">0 saves</small>
+</button>
+
+<button class="collection" onclick="openCategory('Playlists','🎧','#fff0a8')">
+  <span class="icon">🎧</span>
+  <b>Playlists</b>
+  <small id="count-Playlists">0 saves</small>
+</button>
+
+<button class="collection" onclick="openCategory('Outfits','👗','#d9f1ff')">
+  <span class="icon">👗</span>
+  <b>Outfits</b>
+  <small id="count-Outfits">0 saves</small>
+</button>
+
+<button class="collection" onclick="openCategory('Social Life','💌','#dcf5d5')">
+  <span class="icon">💌</span>
+  <b>Social Life</b>
+  <small id="count-Social Life">0 saves</small>
+</button>
+
+<button class="collection" onclick="openCategory('School','📚','#e8ddff')">
+  <span class="icon">📚</span>
+  <b>School</b>
+  <small id="count-School">0 saves</small>
+</button>
+
+<button class="collection" onclick="openCategory('Random','🪩','#ffe1cf')">
+  <span class="icon">🪩</span>
+  <b>Random</b>
+  <small id="count-Random">0 saves</small>
+</button>
+
+</div>
+
+<div class="sectionTitle">
+  <h2>recent saves</h2>
+  <button onclick="showPage('allPage')">see all →</button>
+</div>
+
+<div id="recentList"></div>
+
+<button class="addBig" onclick="openModal()">＋ save something</button>
+
+</div>
+
+
+<!-- ALL PAGE -->
+
+<div id="allPage" class="page">
+
+<div class="header">
+  <div class="logo">everything ♡</div>
+  <button class="searchBtn" onclick="showPage('homePage')">×</button>
+</div>
+
+<div id="allList"></div>
+
+<button class="addBig" onclick="openModal()">＋ save something</button>
+
+</div>
+
+
+<!-- SEARCH PAGE -->
+
+<div id="searchPage" class="page">
+
+<div class="header">
+  <div class="logo">find a save 🔎</div>
+  <button class="searchBtn" onclick="showPage('homePage')">×</button>
+</div>
+
+<div class="searchBox">
+<input id="searchInput" placeholder="search hair, playlists, outfits..." oninput="doSearch()">
+</div>
+
+<div id="searchResults"></div>
+
+</div>
+
+
+<!-- CATEGORY PAGE -->
+
+<div id="categoryPage" class="page">
+
+<button class="back" onclick="showPage('homePage')">← back</button>
+
+<div class="categoryHeader" id="categoryHeader">
+  <h1 id="categoryTitle"></h1>
+  <p id="categoryDescription"></p>
+</div>
+
+<div id="categoryList"></div>
+
+<button class="addBig" onclick="openModal()">＋ add to this collection</button>
+
+</div>
+
+
+<!-- ADD MODAL -->
+
+<div class="modal" id="modal">
+
+<div class="modalBox">
+
+<h2>save something ♡</h2>
+
+<label>What are you saving?</label>
+<input id="saveTitle" placeholder="ex. cute school hairstyle">
+
+<label>Little note</label>
+<textarea id="saveNote" placeholder="What do I want to remember about this?"></textarea>
+
+<label>Collection</label>
+
+<select id="saveCategory">
+<option>Glow Up</option>
+<option>Playlists</option>
+<option>Outfits</option>
+<option>Social Life</option>
+<option>School</option>
+<option>Random</option>
+</select>
+
+<label>Link (optional)</label>
+<input id="saveLink" placeholder="Paste TikTok / Pinterest / website link">
+
+<label>Emoji</label>
+<select id="saveEmoji">
+<option>💗</option>
+<option>🎧</option>
+<option>👗</option>
+<option>🧴</option>
+<option>💄</option>
+<option>💇‍♀️</option>
+<option>📚</option>
+<option>🍓</option>
+<option>🪩</option>
+<option>🌷</option>
+<option>🧸</option>
+<option>🌈</option>
+</select>
+
+<div class="modalButtons">
+<button class="cancel" onclick="closeModal()">cancel</button>
+<button class="saveNew" onclick="addSave()">save ♡</button>
+</div>
+
+</div>
+</div>
+
+
+<!-- NAV -->
+
+<div class="nav">
+
+<button class="active" id="navHome" onclick="showPage('homePage');setActive(this)">
+🏠<br>home
+</button>
+
+<button onclick="showPage('allPage');setActive(this)">
+🗂️<br>all
+</button>
+
+<button onclick="openModal()">
+＋<br>save
+</button>
+
+<button onclick="showPage('searchPage');setActive(this)">
+🔎<br>find
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+let saves = JSON.parse(localStorage.getItem("mySaveLibrary") || "[]");
+
+let currentCategory = "";
+
+function saveData(){
+  localStorage.setItem("mySaveLibrary",JSON.stringify(saves));
+}
+
+function openModal(){
+
+  document.getElementById("modal").classList.add("show");
+
+  if(currentCategory){
+    document.getElementById("saveCategory").value=currentCategory;
+  }
+}
+
+function closeModal(){
+  document.getElementById("modal").classList.remove("show");
+}
+
+function addSave(){
+
+  let title=document.getElementById("saveTitle").value.trim();
+  let note=document.getElementById("saveNote").value.trim();
+  let category=document.getElementById("saveCategory").value;
+  let link=document.getElementById("saveLink").value.trim();
+  let emoji=document.getElementById("saveEmoji").value;
+
+  if(!title){
+    alert("Give your save a little name first ♡");
+    return;
+  }
+
+  saves.unshift({
+    id:Date.now(),
+    title:title,
+    note:note,
+    category:category,
+    link:link,
+    emoji:emoji,
+    favorite:false,
+    trySoon:false,
+    date:new Date().toLocaleDateString()
+  });
+
+  saveData();
+
+  document.getElementById("saveTitle").value="";
+  document.getElementById("saveNote").value="";
+  document.getElementById("saveLink").value="";
+
+  closeModal();
+  renderAll();
+}
+
+function toggleFavorite(id){
+
+  let item=saves.find(x=>x.id===id);
+
+  if(item) item.favorite=!item.favorite;
+
+  saveData();
+  renderAll();
+}
+
+function toggleTry(id){
+
+  let item=saves.find(x=>x.id===id);
+
+  if(item) item.trySoon=!item.trySoon;
+
+  saveData();
+  renderAll();
+}
+
+function deleteSave(id){
+
+  if(confirm("Delete this save? ♡")){
+    saves=saves.filter(x=>x.id!==id);
+    saveData();
+    renderAll();
+  }
+}
+
+function showPage(id){
+
+  document.querySelectorAll(".page").forEach(p=>{
+    p.classList.remove("active");
+  });
+
+  document.getElementById(id).classList.add("active");
+
+  window.scrollTo(0,0);
+
+  if(id==="searchPage"){
+    setTimeout(()=>{
+      document.getElementById("searchInput").focus();
+      doSearch();
+    },100);
+  }
+}
+
+function setActive(button){
+
+  document.querySelectorAll(".nav button").forEach(b=>{
+    b.classList.remove("active");
+  });
+
+  button.classList.add("active");
+}
+
+function openCategory(category,emoji,color){
+
+  currentCategory=category;
+
+  document.getElementById("categoryTitle").textContent=emoji+" "+category;
+
+  document.getElementById("categoryDescription").textContent=
+    "Your little collection of things you don't want to forget.";
+
+  document.getElementById("categoryHeader").style.background=color;
+
+  showPage("categoryPage");
+
+  renderCategory();
+}
+
+function card(item){
+
+  let bg={
+    "Glow Up":"#ffd9e7",
+    "Playlists":"#fff0a8",
+    "Outfits":"#d9f1ff",
+    "Social Life":"#dcf5d5",
+    "School":"#e8ddff",
+    "Random":"#ffe1cf"
+  }[item.category] || "#f1eef5";
+
+  return `
+  <div class="saveCard">
+
+    <div class="saveTop">
+
+      <div class="saveEmoji" style="background:${bg}">
+        ${item.emoji}
+      </div>
+
+      <div class="saveInfo">
+        <h3>${escapeHTML(item.title)}</h3>
+        <p>${escapeHTML(item.note || "No note added yet ♡")}</p>
+      </div>
+
+    </div>
+
+    <div class="saveTags">
+
+      <span class="tag">${item.category}</span>
+
+      ${item.trySoon ? '<span class="tag">⭐ try soon</span>' : ''}
+
+      ${item.favorite ? '<span class="tag">💗 favorite</span>' : ''}
+
+    </div>
+
+    ${
+      item.link
+      ?
+      `<a class="link" href="${safeURL(item.link)}" target="_blank">open original ↗</a>`
+      :
+      ""
+    }
+
+    <div class="cardActions">
+
+      <button class="tryBtn" onclick="toggleTry(${item.id})">
+        ${item.trySoon ? "✓ tried / remove" : "⭐ try soon"}
+      </button>
+
+      <button class="favoriteBtn" onclick="toggleFavorite(${item.id})">
+        ${item.favorite ? "♥ saved" : "♡ favorite"}
+      </button>
+
+      <button class="deleteBtn" onclick="deleteSave(${item.id})">
+        delete
+      </button>
+
+    </div>
+
+  </div>
+  `;
+}
+
+function escapeHTML(text){
+
+  return text
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+function safeURL(url){
+
+  if(/^https?:\/\//i.test(url)){
+    return url;
+  }
+
+  return "#";
+}
+
+function renderRecent(){
+
+  let list=document.getElementById("recentList");
+
+  if(saves.length===0){
+
+    list.innerHTML=`
+      <div class="empty">
+        <span class="big">🧺</span>
+        Your save library is empty!<br>
+        Go save your first little idea ♡
+      </div>
+    `;
+
+    return;
+  }
+
+  list.innerHTML=saves.slice(0,4).map(card).join("");
+}
+
+function renderAll(){
+
+  renderRecent();
+
+  document.getElementById("allList").innerHTML=
+    saves.length
+    ? saves.map(card).join("")
+    :
+    `<div class="empty">
+      <span class="big">🌷</span>
+      Nothing here yet ♡
+    </div>`;
+
+  document.getElementById("totalCount").textContent=saves.length;
+
+  document.getElementById("tryCount").textContent=
+    saves.filter(x=>x.trySoon).length;
+
+  document.getElementById("favCount").textContent=
+    saves.filter(x=>x.favorite).length;
+
+  [
+    "Glow Up",
+    "Playlists",
+    "Outfits",
+    "Social Life",
+    "School",
+    "Random"
+  ].forEach(cat=>{
+
+    let count=saves.filter(x=>x.category===cat).length;
+
+    let el=document.getElementById("count-"+cat);
+
+    if(el) el.textContent=count+(count===1?" save":" saves");
+  });
+
+  if(document.getElementById("categoryPage").classList.contains("active")){
+    renderCategory();
+  }
+
+  doSearch();
+}
+
+function renderCategory(){
+
+  let list=saves.filter(x=>x.category===currentCategory);
+
+  document.getElementById("categoryList").innerHTML=
+
+    list.length
+    ? list.map(card).join("")
+    :
+    `<div class="empty">
+      <span class="big">🧺</span>
+      No saves here yet.<br>
+      Add your first one ♡
+    </div>`;
+}
+
+function doSearch(){
+
+  let input=document.getElementById("searchInput");
+
+  if(!input) return;
+
+  let query=input.value.toLowerCase().trim();
+
+  let results=saves.filter(item=>
+    item.title.toLowerCase().includes(query) ||
+    item.note.toLowerCase().includes(query) ||
+    item.category.toLowerCase().includes(query)
+  );
+
+  document.getElementById("searchResults").innerHTML=
+
+    results.length
+    ? results.map(card).join("")
+    :
+    `<div class="empty">
+      <span class="big">🔎</span>
+      No saves found ♡
+    </div>`;
+}
+
+renderAll();
+
+</script>
+
+</body>
+</html>
